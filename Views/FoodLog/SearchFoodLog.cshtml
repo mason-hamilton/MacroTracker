@@ -1,0 +1,71 @@
+﻿@model MacroTracker.ViewModels.AddFoodLogViewModel
+
+@{
+    ViewData["Title"] = "Add Food Log";
+}
+
+<h2>Add Food to Your Log</h2>
+
+<!-- Search Bar -->
+<form asp-controller="FoodLog" asp-action="SearchFoodLog" method="get">
+    <div class="form-group">
+        <label for="searchQuery">Search Food Items</label>
+        <input type="text" class="form-control" id="searchQuery" name="searchQuery" placeholder="Search for a food item..." value="@Model.SearchQuery" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<!-- Option to Add New Food Item -->
+<p>
+    Can't find your food item?
+    <a asp-action="Create" asp-controller="FoodItem">Add it here</a>
+</p>
+
+<!-- Display Search Results (If Any) -->
+@if (Model.SearchResults != null && Model.SearchResults.Any())
+{
+    <h3>Search Results:</h3>
+    <form asp-action="AddFoodLog">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Calories per Serving</th>
+                    <th>Serving Size</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var foodItem in Model.SearchResults)
+                {
+                    <tr>
+                        <td>@foodItem.Name</td>
+                        <td>@foodItem.CaloriesPerServing</td>
+                        <td>@foodItem.ServingSize @foodItem.ServingUnit</td>
+                        <td>
+                            <input type="radio" name="FoodItemId" value="@foodItem.FoodItemId" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Input for Serving Size -->
+        <div class="form-group">
+            <label for="servingSize">Serving Size Consumed</label>
+            <input type="number" class="form-control" id="servingSize" name="ServingSize" step="0.01" required />
+        </div>
+
+        <!-- Log Food Button -->
+        <button type="submit" class="btn btn-success">Log Food</button>
+    </form>
+}
+else if (Model.SearchQuery != null)
+{
+    <p>No food items found for your search.</p>
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

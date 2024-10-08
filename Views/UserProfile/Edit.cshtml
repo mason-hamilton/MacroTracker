@@ -1,0 +1,69 @@
+﻿@model MacroTracker.ViewModels.UserProfileViewModel
+
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<h2>Edit Profile</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.HiddenFor(m => m.UserProfileId)
+
+    <div class="form-group">
+        <label asp-for="HeightFeet">Height (Feet)</label>
+        <input asp-for="HeightFeet" class="form-control" />
+        <span asp-validation-for="HeightFeet" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HeightInches">Height (Inches)</label>
+        <input asp-for="HeightInches" class="form-control" />
+        <span asp-validation-for="HeightInches" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="WeightInPounds"></label>
+        <input asp-for="WeightInPounds" class="form-control" />
+        <span asp-validation-for="WeightInPounds" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">Select Gender</option>
+            <!option value="Male" @(Model.Gender == "Male" ? "selected" : "")>Male</!option>
+            <!option value="Female" @(Model.Gender == "Female" ? "selected" : "")>Female</!option>
+            <!option value="Other" @(Model.Gender == "Other" ? "selected" : "")>Other</!option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ActivityLevel"></label>
+        <select asp-for="ActivityLevel" class="form-control">
+            <option value="">Select Activity Level</option>
+            <!option value="Sedentary" @(Model.ActivityLevel == "Sedentary" ? "selected" : "")>Sedentary</!option>
+            <!option value="Lightly Active" @(Model.ActivityLevel == "Lightly Active" ? "selected" : "")>Lightly Active</!option>
+            <!option value="Moderately Active" @(Model.ActivityLevel == "Moderately Active" ? "selected" : "")>Moderately Active</!option>
+            <!option value="Very Active" @(Model.ActivityLevel == "Very Active" ? "selected" : "")>Very Active</!option>
+            <!option value="Super Active" @(Model.ActivityLevel == "Super Active" ? "selected" : "")>Super Active</!option>
+        </select>
+        <span asp-validation-for="ActivityLevel" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

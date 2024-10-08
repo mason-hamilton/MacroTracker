@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MacroTracker.Models.UserProfile>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New User Profile</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().WeightInPounds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ActivityLevel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var userProfile in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => userProfile.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => userProfile.Height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => userProfile.WeightInPounds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => userProfile.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => userProfile.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => userProfile.ActivityLevel)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@userProfile.UserProfileId" class="btn btn-warning">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@userProfile.UserProfileId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

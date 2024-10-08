@@ -1,0 +1,61 @@
+﻿@model MacroTracker.Models.FoodItem
+
+@{
+    ViewData["Title"] = "Add New Food Item";
+}
+
+<h2>Add New Food Item</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label for="Name">Name:</label>
+        <input type="text" name="Name" required />
+    </div>
+
+    <div>
+        <label for="CaloriesPerServing">Calories per Serving:</label>
+        <input type="number" name="CaloriesPerServing" step="0.1" required />
+    </div>
+
+    <div>
+        <label for="ServingSize">Serving Size:</label>
+        <input type="number" name="ServingSize" step="0.1" required />
+    </div>
+
+    <div>
+        <label for="ServingUnit">Serving Unit:</label>
+        <input type="text" name="ServingUnit" required />
+    </div>
+
+    <div>
+        <label for="Protein">Protein (g):</label>
+        <input type="number" name="Protein" step="0.1" required />
+    </div>
+
+    <div>
+        <label for="Carbohydrates">Carbs (g):</label>
+        <input type="number" name="Carbohydrates" step="0.1" required />
+    </div>
+
+    <div>
+        <label for="Fat">Fat (g):</label>
+        <input type="number" name="Fat" step="0.1" required />
+    </div>
+
+    <div>
+        <label for="Fiber">Fiber (g):</label>
+        <input type="number" name="Fiber" step="0.1" required />
+    </div>
+
+    <div>
+        <label for="AddedSugar">Added Sugar (g):</label>
+        <input type="number" name="AddedSugar" step="0.1" required />
+    </div>
+
+    <button type="submit">Create Food Item</button>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

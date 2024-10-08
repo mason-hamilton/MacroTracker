@@ -1,0 +1,47 @@
+﻿@model MacroTracker.Models.UserProfile
+
+@{
+    ViewData["Title"] = "User Profile";
+
+    // Conversion constants
+    const double MetersToFeet = 3.28084;
+    const double InchesInFoot = 12;
+
+    // Get height in meters
+    double heightInMeters = Model.Height;
+
+    // Convert height to feet and inches
+    int heightFeet = (int)(heightInMeters * MetersToFeet);
+    double heightInches = (heightInMeters * MetersToFeet - heightFeet) * InchesInFoot;
+}
+
+<h2>Welcome, @Model.User.UserName</h2>
+
+<div>
+    <h4>Your Height: @heightFeet ft @Math.Round(heightInches) in</h4> <!-- Display height in feet and inches -->
+    <h4>Your Daily Caloric Target: @Model.CalculateCalorieTarget()</h4>
+    <h4>Your Macros:</h4>
+    <ul>
+        <li>Protein: @Model.ProteinTarget g</li>
+        <li>Carbs: @Model.CarbTarget g</li>
+        <li>Fats: @Model.FatTarget g</li>
+        <li>Fiber: @Model.FiberTarget g</li>
+        <li>Added Sugar (Maximum): @Model.AddedSugarTarget g</li>
+    </ul>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.UserProfileId">Edit Profile</a>
+</div>
+<div>
+    <a asp-action="AddFoodItem">Add Food Item</a>
+</div>
+
+@*
+@section Scripts {
+    @await Html.RenderPartialAsync("_ValidationScriptsPartial")
+}
+*@
+
+
+

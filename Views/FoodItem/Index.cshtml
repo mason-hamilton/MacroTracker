@@ -1,0 +1,83 @@
+﻿@model IEnumerable<FoodItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaloriesPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServingSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServingUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carbohydrates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fiber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedSugar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaloriesPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServingSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServingUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Protein)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carbohydrates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedSugar)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FoodItemId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FoodItemId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FoodItemId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

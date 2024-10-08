@@ -1,0 +1,27 @@
+﻿@model MacroTracker.ViewModels.EditFoodLogViewModel  // Use the ViewModel
+
+@{
+    ViewData["Title"] = "Edit Food Log";
+}
+
+<h2>Edit Food Log</h2>
+
+<form asp-action="EditFoodLog" method="post">
+    <input type="hidden" asp-for="UserFoodLogId" />
+
+    <div class="form-group">
+        <label asp-for="FoodItemId">Food Item</label>
+        <select asp-for="FoodItemId" asp-items="@(new SelectList(Model.FoodItems, "FoodItemId", "Name", Model.FoodItemId))"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServingSize">Serving Size</label>
+        <input asp-for="ServingSize" type="number" step="0.1" value="@Model.ServingSize" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+
+
+
