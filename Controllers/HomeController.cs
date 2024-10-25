@@ -30,10 +30,22 @@ public class HomeController : Controller
         }
 
         var today = DateTime.Now.Date;
-        var userFoodLogs = _context.UserFoodLogs
+
+        // Fetch and group the food logs by MealType
+        var userFoodLogs = _context.UserFoodLogs 
             .Include(uf => uf.FoodItem)
             .Where(uf => uf.UserId == userId && uf.LogDate == today)
             .ToList();
+
+        //Ensuring the list is not null
+        if (userFoodLogs == null)
+        {
+            userFoodLogs = new List<UserFoodLog>();
+        }
+
+        var foodLogsGroupedByMeal = userFoodLogs
+            .GroupBy(log => log.MealType)
+            .ToDictionary(group => group.Key, group => group.ToList());
 
         // Fetch the available food items to populate the dropdown in the view
         var availableFoodItems = _context.FoodItems.ToList();
@@ -41,12 +53,14 @@ public class HomeController : Controller
         var viewModel = new HomeIndexViewModel
         {
             UserProfile = userProfile,
-            UserFoodLogs = userFoodLogs,
+            UserFoodLogsGroupedByMeal = foodLogsGroupedByMeal,  // Pass grouped food logs to the view
             AvailableFoodItems = availableFoodItems  // Pass the available food items to the view
         };
 
         return View(viewModel);
     }
+
+
 }
 
 

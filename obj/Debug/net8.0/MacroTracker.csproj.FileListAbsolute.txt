@@ -259,3 +259,4 @@ C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\refint\Ma
 C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\MacroTracker.pdb
 C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\MacroTracker.genruntimeconfig.cache
 C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\ref\MacroTracker.dll
+C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\MacroTracker.sourcelink.json

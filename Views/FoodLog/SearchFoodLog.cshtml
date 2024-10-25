@@ -6,6 +6,8 @@
 
 <h2>Add Food to Your Log</h2>
 
+
+
 <!-- Search Bar -->
 <form asp-controller="FoodLog" asp-action="SearchFoodLog" method="get">
     <div class="form-group">
@@ -25,7 +27,9 @@
 @if (Model.SearchResults != null && Model.SearchResults.Any())
 {
     <h3>Search Results:</h3>
-    <form asp-action="AddFoodLog">
+
+    <!-- Main form to log food -->
+    <form id="foodLogForm" asp-action="AddFoodLog" method="post">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -43,7 +47,7 @@
                         <td>@foodItem.CaloriesPerServing</td>
                         <td>@foodItem.ServingSize @foodItem.ServingUnit</td>
                         <td>
-                            <input type="radio" name="FoodItemId" value="@foodItem.FoodItemId" />
+                            <input type="radio" name="SelectedFoodItemId" value="@foodItem.FoodItemId" />
                         </td>
                     </tr>
                 }
@@ -56,16 +60,67 @@
             <input type="number" class="form-control" id="servingSize" name="ServingSize" step="0.01" required />
         </div>
 
+        <!-- Hidden input for MealType -->
+        <input type="hidden" name="MealType" value="@Model.MealType" />
+        <!-- Check in console the value of hidden field -->
+        
+        
+        <script>
+            // Log the value of MealType to the console
+            const mealType = document.getElementById("mealTypeField").value;
+            console.log("MealType value:", mealType);
+        </script>
+
+        
         <!-- Log Food Button -->
-        <button type="submit" class="btn btn-success">Log Food</button>
+        <button type="button" class="btn btn-success" onclick="submitFoodLog()">Log Food</button>
     </form>
 }
-else if (Model.SearchQuery != null)
-{
-    <p>No food items found for your search.</p>
-}
-
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @Html.Partial("_ValidationScriptsPartial")  <!-- This fixes the error -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function submitFoodLog() {
+            var formData = $('#foodLogForm').serialize();
+
+            $.ajax({
+                url: '@Url.Action("AddFoodLog", "FoodLog")',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        // Show success message and redirect to home
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message,
+                            timer: 2000, // Close automatically after 2 seconds
+                            showConfirmButton: false
+                        }).then(() => {
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        });
+                    } else {
+                        // Show the SweetAlert popup if the food item is null or invalid
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Something went wrong while logging the food.'
+                    });
+                }
+            });
+        }
+    </script>
 }
+
+

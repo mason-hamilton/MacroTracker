@@ -4,6 +4,7 @@ using MacroTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MacroTracker.Migrations
 {
     [DbContext(typeof(MacroTrackerContext))]
-    partial class MacroTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20241017134720_AddUserProfileIdToFoodLogs")]
+    partial class AddUserProfileIdToFoodLogs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,21 +140,6 @@ namespace MacroTracker.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserFoodLogId"));
 
-                    b.Property<double>("AddedSugar")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Calories")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Carbs")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Fats")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Fiber")
-                        .HasColumnType("float");
-
                     b.Property<int>("FoodItemId")
                         .HasColumnType("int");
 
@@ -161,9 +149,6 @@ namespace MacroTracker.Migrations
                     b.Property<string>("MealType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Protein")
-                        .HasColumnType("float");
 
                     b.Property<double>("ServingSize")
                         .HasColumnType("float");

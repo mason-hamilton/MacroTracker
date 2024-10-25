@@ -18,6 +18,9 @@ namespace MacroTracker.ViewModels
         // The serving size entered by the user
         public double ServingSize { get; set; }
 
+        // New Property to track which meal the food log is associated with
+        public string MealType { get; set; }
+
         // Additional properties can be added if needed (e.g., for UI purposes)
     }
 }

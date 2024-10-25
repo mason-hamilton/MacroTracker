@@ -8,6 +8,8 @@ namespace MacroTracker.ViewModels
 
         // New property to hold available food items
         public List<FoodItem> AvailableFoodItems { get; set; }  // Holds the list of food items to select from
+
+        public Dictionary<string, List<UserFoodLog>> UserFoodLogsGroupedByMeal { get; set; }
     }
 }
 

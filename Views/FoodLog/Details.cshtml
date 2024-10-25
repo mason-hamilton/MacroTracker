@@ -1,42 +1,50 @@
-﻿@model MacroTracker.Models.UserFoodLog
+﻿@model MacroTracker.ViewModels.EditFoodLogViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Edit Food Log";
 }
 
-<h1>Details</h1>
+<h1>Edit Food Log</h1>
 
-<div>
-    <h4>UserFoodLog</h4>
+<form asp-action="SaveEdit" method="post">
+    <input type="hidden" asp-for="UserFoodLogId" />
+    <h4>Food Log Details</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LogDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LogDate)
+        <dt class="col-sm-2">Food Item</dt>
+        <dd class="col-sm-10">
+            @if (Model.FoodItem != null)
+            {
+                @Model.FoodItem.Name
+                <input type="hidden" asp-for="FoodItemId" /> <!-- Send the selected FoodItemId -->
+            }
+            else
+            {
+                <span>Unknown Food Item</span>
+            }
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ServingSize)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ServingSize)
+
+        <dt class="col-sm-2">Calories</dt>
+        <dd class="col-sm-10">@Model.Calories</dd>
+
+        <!-- Other nutritional fields -->
+
+        <dt class="col-sm-2">Meal Type</dt>
+        <input type="hidden" asp-for="MealType" />  <!-- Send the selected MealType -->
+        <dd class="col-sm-10">
+            @Model.MealType
+            <!-- If you want to allow editing MealType, use a dropdown/input here -->
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoodItem)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoodItem.FoodItemId)
+
+        <dt class="col-sm-2">Logged Serving Size</dt>
+        <dd class="col-sm-10">
+            <input asp-for="ServingSize" class="form-control" />
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.UserFoodLogId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+<a asp-action="Index">Back to List</a>
+
+
