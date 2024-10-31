@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uaEIo7o/9kg=",
+  "dgSpecHash": "aUoBnLuDxL4=",
   "success": true,
   "projectFilePath": "C:\\Users\\13136\\source\\repos\\MacroTracker\\MacroTracker\\MacroTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\13136\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\13136\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\13136\\.nuget\\packages\\fluentassertions\\6.12.1\\fluentassertions.6.12.1.nupkg.sha512",
     "C:\\Users\\13136\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\13136\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\13136\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

@@ -1,3 +1,4 @@
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,18 @@ builder.Services.AddIdentity<MacroTracker.Models.ApplicationUser, IdentityRole>(
     .AddEntityFrameworkStores<MacroTracker.Models.MacroTrackerContext>()
     .AddDefaultTokenProviders();
 
+// Register CORS policy for React frontend access
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")  // URL of your React app
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +41,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors("ReactPolicy"); // Enable CORS for the specified policy
 
 app.UseAuthentication(); // Ensure authentication is used
 app.UseAuthorization();
@@ -54,6 +69,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 
 app.Run();

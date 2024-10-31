@@ -260,3 +260,4 @@ C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\MacroTrac
 C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\MacroTracker.genruntimeconfig.cache
 C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\ref\MacroTracker.dll
 C:\Users\13136\source\repos\MacroTracker\MacroTracker\obj\Debug\net8.0\MacroTracker.sourcelink.json
+C:\Users\13136\source\repos\MacroTracker\MacroTracker\bin\Debug\net8.0\FluentAssertions.dll
