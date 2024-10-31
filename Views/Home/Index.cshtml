@@ -11,7 +11,7 @@
 <!-- Display the total calories consumed today -->
 <div>
     <h4>
-        Total Calories Consumed Today:
+        Total Calories Consumed Today!:
         @((Model.UserFoodLogsGroupedByMeal != null && Model.UserFoodLogsGroupedByMeal.Any())
             ? Model.UserFoodLogsGroupedByMeal.SelectMany(g => g.Value).Where(log => log.Calories.HasValue).Sum(log => log.Calories.Value)
             : 0)
